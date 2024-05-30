@@ -14,7 +14,7 @@ import { MessageNode } from "./components/CustomNodes/MessageNode";
 import "react-toastify/dist/ReactToastify.css";
 
 import { toast, ToastContainer } from "react-toastify";
-import { Button } from "@mui/material";
+import { Header } from "./components/Header";
 const initialNodes = [
   {
     id: "0",
@@ -148,27 +148,7 @@ function App() {
   };
   return (
     <>
-      <div
-        className="overall-wrapper"
-        style={{ background: "lightgray", height: "7vh" }}
-      >
-        <div></div>
-        <div
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            display: "flex",
-          }}
-        >
-          <Button
-            onClick={save}
-            sx={{ height: "fit-content" }}
-            variant="outlined"
-          >
-            Save Changes
-          </Button>
-        </div>
-      </div>
+      <Header save={save}></Header>
       <div className="overall-wrapper dndflow">
         <div style={{ height: "93vh" }}>
           <ReactFlow
