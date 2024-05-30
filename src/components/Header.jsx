@@ -6,7 +6,6 @@ export const Header = ({ save }) => {
       className="overall-wrapper"
       style={{ background: "lightgray", height: "7vh" }}
     >
-      {/* <div> */}
       <Typography
         sx={{ display: "flex", alignItems: "center", marginLeft: "10px" }}
         align="left"
@@ -14,7 +13,6 @@ export const Header = ({ save }) => {
       >
         Bite Speed
       </Typography>
-      {/* </div> */}
       <div
         style={{
           alignItems: "center",

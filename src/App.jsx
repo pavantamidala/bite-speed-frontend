@@ -99,7 +99,6 @@ function App() {
   const onInputChangeTextNode = (value) => {
     const tempNodes = nodes.map((obj) => {
       if (obj.id === activeNodeDetails.id) {
-        // obj.data.label = value;
         obj.data = { ...obj.data, label: value };
         setActiveNodeDetails({ ...activeNodeDetails, text: value });
       }
@@ -117,33 +116,20 @@ function App() {
     setNodes(tempNodes);
   };
   const save = () => {
-    // total edges = total nodes - 1
-    // save if total edges >= nodes-1
+    const toastOpts = {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    };
     if (edges.length >= nodes.length || edges.length >= nodes.length - 1) {
-      console.log("all nodes are connected");
-      toast.success("Flow saved successfully", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        // transition: Bounce,
-      });
+      toast.success("Flow saved successfully", toastOpts);
     } else {
-      console.log("Not connected");
-      toast.error("Failed to save the flow", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error("Failed to save the flow", toastOpts);
     }
   };
   return (
@@ -174,7 +160,6 @@ function App() {
           </ReactFlow>
         </div>
         <div>
-          {/* <button onClick={save}> save</button> */}
           <SideBar
             onInputChangeTextNode={onInputChangeTextNode}
             textNodeValue={activeNodeDetails.text}
