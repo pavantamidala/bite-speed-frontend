@@ -12,19 +12,16 @@ import { useCallback, useState } from "react";
 import { SideBar } from "./components/Sidebar";
 import { MessageNode } from "./components/CustomNodes/Message";
 import "react-toastify/dist/ReactToastify.css";
-
 import { toast, ToastContainer } from "react-toastify";
 import { Header } from "./components/Header";
-const initialNodes = [
-  {
-    id: "0",
-    type: "message",
-    position: { x: 118, y: 77 },
-    data: { label: "message node" },
-  },
-];
-let id = 1;
-const getId = () => `${id++}`;
+import {
+  getId,
+  initialNodes,
+  NOTIFICATION_MSGS,
+  PRO_OPTS,
+  TOASTS_OPTS,
+} from "./static";
+
 const nodeTypes = { message: MessageNode };
 
 function App() {
@@ -45,7 +42,7 @@ function App() {
       setEdges((eds) => applyEdgeChanges(changes, eds));
       console.log(edges);
     },
-    [setEdges]
+    [edges]
   );
   const onConnect = useCallback(
     (connection) => setEdges((eds) => addEdge(connection, eds)),
@@ -117,20 +114,10 @@ function App() {
     setNodes(tempNodes);
   };
   const save = () => {
-    const toastOpts = {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    };
     if (edges.length >= nodes.length || edges.length >= nodes.length - 1) {
-      toast.success("Flow saved successfully", toastOpts);
+      toast.success(NOTIFICATION_MSGS.SUCCESS, TOASTS_OPTS);
     } else {
-      toast.error("Failed to save the flow", toastOpts);
+      toast.error(NOTIFICATION_MSGS.FAILURE, TOASTS_OPTS);
     }
   };
   return (
@@ -146,6 +133,7 @@ function App() {
             onInit={setReactFlowInstance}
             onDrop={onDrop}
             onDragOver={onDragOver}
+            proOptions={PRO_OPTS}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             nodeTypes={nodeTypes}
@@ -160,7 +148,7 @@ function App() {
             <Background color="#ccc" variant={"dots"} />
           </ReactFlow>
         </div>
-        <div>
+        <div style={{ borderLeft: "1px solid lightgray" }}>
           <SideBar
             onInputChangeTextNode={onInputChangeTextNode}
             textNodeValue={activeNodeDetails.text}

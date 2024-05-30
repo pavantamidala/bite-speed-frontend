@@ -2,6 +2,7 @@ import "../App.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, IconButton, Typography } from "@mui/material";
 import { DraggableMessageNode, MessageInput } from "./CustomNodes/Message";
+import { makeUppserCaseFirstLetter } from "../static";
 export const SideBar = ({
   activeNodeDetails,
   onInputChangeTextNode,
@@ -30,8 +31,7 @@ export const SideBar = ({
             <ArrowBackIcon fontSize="medium"></ArrowBackIcon>
           </IconButton>
           <Typography width={"100%"} align="center" variant="h6">
-            {activeNodeDetails.type.charAt(0).toUpperCase() +
-              activeNodeDetails.type.slice(1)}
+            {makeUppserCaseFirstLetter(activeNodeDetails.type)}
           </Typography>
         </Box>
       ) : (
