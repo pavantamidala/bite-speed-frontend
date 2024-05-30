@@ -92,7 +92,7 @@ export const DraggableMessageNode = ({ dragStart }) => {
   );
 };
 
-// input component for the message node
+// input component for the main node
 export const MessageInput = ({ value, onInputChangeTextNode }) => {
   const onChange = useCallback(
     (evt) => {
