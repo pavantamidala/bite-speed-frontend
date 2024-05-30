@@ -1,18 +1,8 @@
 import "../App.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, IconButton, Typography } from "@mui/material";
-import { DraggableMessageNode, MessageInput } from "./CustomNodes/Message";
 import { makeUppserCaseFirstLetter } from "../static";
-export const SideBar = ({
-  activeNodeDetails,
-  onInputChangeTextNode,
-  textNodeValue,
-  deselectNode,
-}) => {
-  const onDragStart = (event, nodeType) => {
-    event.dataTransfer.setData("application/reactflow", nodeType);
-    event.dataTransfer.effectAllowed = "move";
-  };
+export const SideBar = ({ activeNodeDetails, deselectNode, children }) => {
   const back = () => {
     deselectNode();
   };
@@ -37,15 +27,7 @@ export const SideBar = ({
       ) : (
         ""
       )}
-
-      {activeNodeDetails.type === "message" ? (
-        <MessageInput
-          onInputChangeTextNode={onInputChangeTextNode}
-          value={textNodeValue}
-        ></MessageInput>
-      ) : (
-        <DraggableMessageNode dragStart={onDragStart}></DraggableMessageNode>
-      )}
+      {children}
     </aside>
   );
 };

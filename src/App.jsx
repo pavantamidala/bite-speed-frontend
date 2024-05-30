@@ -10,7 +10,11 @@ import "reactflow/dist/style.css";
 import "./App.css";
 import { useCallback, useState } from "react";
 import { SideBar } from "./components/Sidebar";
-import { MessageNode } from "./components/CustomNodes/Message";
+import {
+  DraggableMessageNode,
+  MessageInput,
+  MessageNode,
+} from "./components/CustomNodes/Message";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { Header } from "./components/Header";
@@ -120,6 +124,10 @@ function App() {
       toast.error(NOTIFICATION_MSGS.FAILURE, TOASTS_OPTS);
     }
   };
+  const onDragStart = (event, nodeType) => {
+    event.dataTransfer.setData("application/reactflow", nodeType);
+    event.dataTransfer.effectAllowed = "move";
+  };
   return (
     <>
       <Header save={save}></Header>
@@ -150,11 +158,21 @@ function App() {
         </div>
         <div style={{ borderLeft: "1px solid lightgray" }}>
           <SideBar
-            onInputChangeTextNode={onInputChangeTextNode}
-            textNodeValue={activeNodeDetails.text}
             activeNodeDetails={activeNodeDetails}
             deselectNode={deselectNode}
-          ></SideBar>
+          >
+            {/* we can add any number of draggable nodes like this */}
+            {activeNodeDetails.type === "message" ? (
+              <MessageInput
+                onInputChangeTextNode={onInputChangeTextNode}
+                value={activeNodeDetails.text}
+              ></MessageInput>
+            ) : (
+              <DraggableMessageNode
+                dragStart={onDragStart}
+              ></DraggableMessageNode>
+            )}
+          </SideBar>
           <ToastContainer></ToastContainer>
         </div>
       </div>
