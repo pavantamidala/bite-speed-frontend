@@ -21,7 +21,7 @@ const StyledCard = styled(Card)({
   flexDirection: "column",
   minWidth: 250,
 });
-
+// main node
 export const MessageNode = ({ data, isConnectable }) => {
   return (
     <StyledCard>
@@ -74,6 +74,7 @@ export const MessageNode = ({ data, isConnectable }) => {
   );
 };
 
+// a draggable node on the side panel
 export const DraggableMessageNode = ({ dragStart }) => {
   const NODE_TYPE = "message";
 
@@ -91,6 +92,7 @@ export const DraggableMessageNode = ({ dragStart }) => {
   );
 };
 
+// input component for the message node
 export const MessageInput = ({ value, onInputChangeTextNode }) => {
   const onChange = useCallback(
     (evt) => {
@@ -110,7 +112,6 @@ export const MessageInput = ({ value, onInputChangeTextNode }) => {
         onChange={onChange}
         rows={2}
         fullWidth
-        defaultValue="Default Value"
       />
     </div>
   );

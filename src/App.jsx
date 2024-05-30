@@ -89,6 +89,7 @@ function App() {
   const nodeClickHandle = (event, node) => {
     console.log(node);
     console.log(nodes);
+    console.log(edges);
     setActiveNodeDetails({
       id: node.id,
       type: node.type,
