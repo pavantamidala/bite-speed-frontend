@@ -1,16 +1,23 @@
 import { Handle, Position } from "reactflow";
 import "../../styles/MessageNode.css";
 import ChatIcon from "@mui/icons-material/Chat";
-import { Card, CardContent, Typography, IconButton, Box } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  IconButton,
+  Box,
+} from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { styled } from "@mui/system";
+import { useCallback } from "react";
+import "../../styles/TextNodeInput.css";
 
 const StyledCard = styled(Card)({
   display: "flex",
   alignItems: "center",
-  //   backgroundColor: "#E0F7FA",
   borderRadius: "8px",
-  //   padding: "8px 16px",
   flexDirection: "column",
   minWidth: 250,
 });
@@ -64,5 +71,47 @@ export const MessageNode = ({ data, isConnectable }) => {
         isConnectable={isConnectable}
       />
     </StyledCard>
+  );
+};
+
+export const DraggableMessageNode = ({ dragStart }) => {
+  const NODE_TYPE = "message";
+
+  return (
+    <div
+      className="dndnode message"
+      onDragStart={(event) => dragStart(event, NODE_TYPE)}
+      draggable
+    >
+      <IconButton size="small">
+        <ChatIcon color="primary" fontSize="small" />
+      </IconButton>
+      Message
+    </div>
+  );
+};
+
+export const MessageInput = ({ value, onInputChangeTextNode }) => {
+  const onChange = useCallback(
+    (evt) => {
+      console.log(evt.target.value);
+      onInputChangeTextNode(evt.target.value);
+    },
+    [onInputChangeTextNode]
+  );
+  return (
+    <div className="TextNodeInputWrapper">
+      <Typography variant={"caption"}> Text</Typography>
+      <TextField
+        id="outlined-multiline-static"
+        label=""
+        multiline
+        value={value}
+        onChange={onChange}
+        rows={2}
+        fullWidth
+        defaultValue="Default Value"
+      />
+    </div>
   );
 };

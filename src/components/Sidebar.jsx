@@ -1,8 +1,7 @@
-import "../../App.css";
-import { TextNode } from "./TextNode";
-import { TextNodeInput } from "./TextNodeInput";
+import "../App.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, IconButton, Typography } from "@mui/material";
+import { DraggableMessageNode, MessageInput } from "./CustomNodes/Message";
 export const SideBar = ({
   activeNodeDetails,
   onInputChangeTextNode,
@@ -40,12 +39,12 @@ export const SideBar = ({
       )}
 
       {activeNodeDetails.type === "message" ? (
-        <TextNodeInput
+        <MessageInput
           onInputChangeTextNode={onInputChangeTextNode}
           value={textNodeValue}
-        ></TextNodeInput>
+        ></MessageInput>
       ) : (
-        <TextNode dragStart={onDragStart}></TextNode>
+        <DraggableMessageNode dragStart={onDragStart}></DraggableMessageNode>
       )}
     </aside>
   );

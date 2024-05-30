@@ -9,8 +9,8 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import "./App.css";
 import { useCallback, useState } from "react";
-import { SideBar } from "./components/SideBar/Sidebar";
-import { MessageNode } from "./components/CustomNodes/MessageNode";
+import { SideBar } from "./components/Sidebar";
+import { MessageNode } from "./components/CustomNodes/Message";
 import "react-toastify/dist/ReactToastify.css";
 
 import { toast, ToastContainer } from "react-toastify";
