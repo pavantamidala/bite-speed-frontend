@@ -2,6 +2,9 @@ import ReactFlow, {
   addEdge,
   applyEdgeChanges,
   applyNodeChanges,
+  MiniMap,
+  Controls,
+  Background,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import "./App.css";
@@ -179,7 +182,16 @@ function App() {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             nodeTypes={nodeTypes}
-          />
+          >
+            <MiniMap
+              nodeStrokeWidth={3}
+              nodeColor={() => "#E0F7FA"}
+              zoomable
+              pannable
+            />
+            <Controls />
+            <Background color="#ccc" variant={"dots"} />
+          </ReactFlow>
         </div>
         <div>
           {/* <button onClick={save}> save</button> */}
