@@ -1,13 +1,44 @@
-# React + Vite
+# Bite Speed Frontend Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Deployed Link**: [Bite Speed Frontend](https://bite-speed-frontend.vercel.app/)
 
-Currently, two official plugins are available:
+## To extend with new nodes follow below instructions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To add a new node in the nodes panel, the following configuration changes are necessary:
 
-![Chat Builder Flow](./main-screenshot.png)
+```javascript
+// To add new node in nodes panel we need to change the below config in App.jsx file.
 
-![Setting Panel](./settings-panel.png)
-f
+// Follow the already created custom node for reference in src/components/Customnodes/Message.jsx
+const nodeTypes = { message: MessageNode };
+const nodesConfig = [
+  {
+    mainNode: MessageNode, // main node for the react flow
+    inputNode: MessageInput, // input node for the settings panel
+    draggableNode: DraggableMessageNode, // draggable node used to create main node.
+    type: "message", // type of the node.
+  },
+];
+```
+
+---
+
+## Screenshots
+
+### Chat Builder Flow
+
+![Chat Builder Flow](./screenshots/main.png)
+
+### Settings Panel
+
+![Settings Panel](./screenshots/settings-panel.png)
+
+### Success Status
+
+![Success Message](./screenshots/success.png)
+
+### Failure Status
+
+![Failure Message](./screenshots/fail.png)
+
+---
