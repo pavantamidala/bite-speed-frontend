@@ -12,6 +12,7 @@ export const TOASTS_OPTS = {
 export const NOTIFICATION_MSGS = {
   SUCCESS: "Flow saved successfully!",
   FAILURE: "Failed to save the flow.",
+  FAILED_CONDITION: "More than one node has empty target handles.",
 };
 
 export const PRO_OPTS = {

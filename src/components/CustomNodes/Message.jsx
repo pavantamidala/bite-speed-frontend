@@ -28,6 +28,7 @@ export const MessageNode = ({ data, isConnectable }) => {
       <Handle
         type="target"
         position={Position.Left}
+        sourceHandle="a"
         isConnectable={isConnectable}
       />
       <CardContent
@@ -67,6 +68,7 @@ export const MessageNode = ({ data, isConnectable }) => {
       </CardContent>
       <Handle
         type="source"
+        sourceHandle="b"
         position={Position.Right}
         isConnectable={isConnectable}
       />

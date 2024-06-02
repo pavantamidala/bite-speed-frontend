@@ -78,10 +78,6 @@ function App() {
       if (typeof type === "undefined" || !type) {
         return;
       }
-
-      // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
-      // and you don't need to subtract the reactFlowBounds.left/top anymore
-      // details: https://reactflow.dev/whats-new/2023-11-10
       const position = reactFlowInstance.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
@@ -125,12 +121,24 @@ function App() {
     setNodes(tempNodes);
   };
   const save = () => {
+    if (nodes.length > 1) {
+      const nodesWithEmptyTargetHandles = nodes.filter(
+        (node) => !edges.some((edge) => edge.target === node.id)
+      );
+
+      if (nodesWithEmptyTargetHandles.length > 1) {
+        toast.error(NOTIFICATION_MSGS.FAILED_CONDITION, TOASTS_OPTS);
+        return;
+      }
+    }
+
     if (edges.length >= nodes.length || edges.length >= nodes.length - 1) {
       toast.success(NOTIFICATION_MSGS.SUCCESS, TOASTS_OPTS);
     } else {
       toast.error(NOTIFICATION_MSGS.FAILURE, TOASTS_OPTS);
     }
   };
+
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
