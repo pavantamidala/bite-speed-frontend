@@ -96,7 +96,6 @@ export const DraggableMessageNode = ({ dragStart }) => {
 export const MessageInput = ({ value, onInputChangeTextNode }) => {
   const onChange = useCallback(
     (evt) => {
-      console.log(evt.target.value);
       onInputChangeTextNode(evt.target.value);
     },
     [onInputChangeTextNode]

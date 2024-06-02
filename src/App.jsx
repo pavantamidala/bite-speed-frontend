@@ -5,6 +5,7 @@ import ReactFlow, {
   MiniMap,
   Controls,
   Background,
+  MarkerType,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import "./App.css";
@@ -49,7 +50,16 @@ function App() {
     [edges]
   );
   const onConnect = useCallback(
-    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    (connection) =>
+      setEdges((eds) =>
+        addEdge(
+          {
+            ...connection,
+            markerEnd: { type: MarkerType.ArrowClosed, width: 20, height: 20 },
+          },
+          eds
+        )
+      ),
     [setEdges]
   );
 
@@ -88,9 +98,6 @@ function App() {
   );
 
   const nodeClickHandle = (event, node) => {
-    console.log(node);
-    console.log(nodes);
-    console.log(edges);
     setActiveNodeDetails({
       id: node.id,
       type: node.type,
@@ -153,7 +160,7 @@ function App() {
               pannable
             />
             <Controls />
-            <Background color="#ccc" variant={"dots"} />
+            <Background color="#ccc" variant={"cross"} />
           </ReactFlow>
         </div>
         <div style={{ borderLeft: "1px solid lightgray" }}>
