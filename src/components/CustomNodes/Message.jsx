@@ -103,10 +103,10 @@ export const MessageInput = ({ value, onInputChangeTextNode }) => {
   );
   return (
     <div className="TextNodeInputWrapper">
-      <Typography variant={"caption"}> Text</Typography>
+      {/* <Typography variant={"caption"}> Text</Typography> */}
       <TextField
         id="outlined-multiline-static"
-        label=""
+        label="Text"
         multiline
         value={value}
         onChange={onChange}
