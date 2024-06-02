@@ -13,6 +13,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { styled } from "@mui/system";
 import { useCallback } from "react";
 import "../../styles/TextNodeInput.css";
+import { makeUppserCaseFirstLetter } from "../../static";
 
 const StyledCard = styled(Card)({
   display: "flex",
@@ -28,7 +29,6 @@ export const MessageNode = ({ data, isConnectable }) => {
       <Handle
         type="target"
         position={Position.Left}
-        sourceHandle="a"
         isConnectable={isConnectable}
       />
       <CardContent
@@ -68,7 +68,6 @@ export const MessageNode = ({ data, isConnectable }) => {
       </CardContent>
       <Handle
         type="source"
-        sourceHandle="b"
         position={Position.Right}
         isConnectable={isConnectable}
       />
@@ -89,7 +88,7 @@ export const DraggableMessageNode = ({ dragStart }) => {
       <IconButton size="small">
         <ChatIcon color="primary" fontSize="small" />
       </IconButton>
-      Message
+      {makeUppserCaseFirstLetter(NODE_TYPE)}
     </div>
   );
 };

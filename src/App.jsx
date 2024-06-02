@@ -27,7 +27,16 @@ import {
   TOASTS_OPTS,
 } from "./static";
 
+// To add new node in nodes panel we need to change the below config.
 const nodeTypes = { message: MessageNode };
+const nodesConfig = [
+  {
+    mainNode: MessageNode, // main node for the react flow
+    inputNode: MessageInput, // input node for the settings panel
+    draggableNode: DraggableMessageNode, // draggable node used to create main node.
+    type: "message", // type of the node.
+  },
+];
 
 function App() {
   const [nodes, setNodes] = useState(initialNodes);
@@ -176,17 +185,24 @@ function App() {
             activeNodeDetails={activeNodeDetails}
             deselectNode={deselectNode}
           >
-            {/* we can add any number of draggable nodes like this */}
-            {activeNodeDetails.type === "message" ? (
-              <MessageInput
-                onInputChangeTextNode={onInputChangeTextNode}
-                value={activeNodeDetails.text}
-              ></MessageInput>
-            ) : (
-              <DraggableMessageNode
-                dragStart={onDragStart}
-              ></DraggableMessageNode>
-            )}
+            {nodesConfig.map((config) => {
+              if (activeNodeDetails.type === config.type) {
+                return (
+                  <config.inputNode
+                    key={config.type}
+                    onInputChangeTextNode={onInputChangeTextNode}
+                    value={activeNodeDetails.text}
+                  ></config.inputNode>
+                );
+              } else if (!activeNodeDetails.type) {
+                return (
+                  <config.draggableNode
+                    key={config.type}
+                    dragStart={onDragStart}
+                  ></config.draggableNode>
+                );
+              }
+            })}
           </SideBar>
           <ToastContainer></ToastContainer>
         </div>
